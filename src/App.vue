@@ -1,12 +1,32 @@
 <template>
   <div id="app">
+    <Title user = 'larry'/>
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/quotation">Qutation</router-link> |
+      <router-link to="/churn">Churn Queue</router-link> 
     </div>
     <router-view />
+
+
   </div>
 </template>
+
+
+
+<script>
+import Title from "@/components/Title.vue";
+
+  export default {
+    name: 'App',
+    components: {
+      Title
+    }
+  };
+</script>
+
+
 
 <style>
 #app {

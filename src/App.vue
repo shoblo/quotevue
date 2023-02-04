@@ -3,11 +3,11 @@
     <Title user="larry" />
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/Billing">Billing</router-link> |
+      <!-- <router-link to="/about">About</router-link> | -->
+      <!-- <router-link to="/Billing">Billing</router-link> | -->
       <router-link to="/Handovers">Handovers</router-link> |
-      <router-link to="/quotation">Qutation</router-link> |
-      <router-link to="/churn">Churn Queue</router-link>
+      <router-link to="/quotation">Qutation</router-link>
+      <!-- <router-link to="/churn">Churn Queue</router-link> -->
     </div>
     <router-view />
   </div>

@@ -34,14 +34,24 @@
                     <option value="Lite-VDSL">Lite-VDSL</option>
                     <option value="Lite-BS2">Lite-BS2</option>
                 </select> -->
-        <Dropdown
+        <!-- <Dropdown
           v-model="quote.connection"
           :options="connection"
           optionLabel="name"
           optionValue="code"
           filter="true"
           placeholder="P2P/P2A"
-        />
+        /> -->
+        <span v-if="quote.product == 'WETN' || quote.product == 'EVPN'">
+          <Dropdown
+            v-model="quote.connection"
+            :options="connection"
+            optionLabel="name"
+            optionValue="code"
+            filter="true"
+            placeholder="P2P/P2A"
+          />
+        </span>
 
         <!-- <select name="connection" id="connection" v-model="quote.connection">
                     <option value="P2A">P2A</option>
@@ -129,9 +139,13 @@
     <!-- <Button class="button" v-on:click="getMessage">Submit</Button> -->
     <div>
       <h4>
-        Thank you for your quote request, please see pricing below:<br />
+        Thank you for your quote request, please desk-audit pricing estimate:<br />
         Please quote this in future communication, including installation.<br />
-        Product: {{ quote.bandwidth }}M {{ quote.product }}<br />
+        Product: {{ quote.bandwidth }}M {{ quote.product }}
+        <span v-if="quote.product == 'WETN' || quote.product == 'EVPN'">{{
+          quote.connection
+        }}</span
+        ><br />
         Access type: {{ quote.access_type }}<br />
         Rate limit: {{ quote.bandwidth }}Mb/s<br />
         Installation Cost: ${{ quote.nrc }}<br />
@@ -144,7 +158,7 @@
         Subject to Vodafone financial approval and planning approval; Subject to
         network availability; Commercial in Confidence.<br />
 
-        Best regards<br />
+        Kind regards<br />
       </h4>
     </div>
   </div>
@@ -172,8 +186,8 @@ export default {
         term: 12,
         bandwidth: 100,
         access_speed: 100,
-        nrc: 100,
-        mrc: 100,
+        nrc: 720,
+        mrc: 410,
       },
       products: [
         { name: "WETN", code: "WETN" },
@@ -214,6 +228,7 @@ export default {
         { name: "1G", code: 1000 },
         { name: "10G", code: 10000 },
       ],
+      connection_disabled: false,
     };
   },
 
@@ -227,7 +242,7 @@ export default {
   },
   methods: {
     getMessage() {
-      const path = "https://fastquote1.azurewebsites.net/test";
+      const path = "https://fastquote-aus-east.azurewebsites.net/test";
       axios
         .get(path)
         .then((res) => {
@@ -239,8 +254,8 @@ export default {
         });
     },
     Postquote() {
-      // const path = 'http://localhost:5000';
-      const path = "https://fastquote1.azurewebsites.net";
+      // const path = "http://localhost:5000";
+      const path = "https://fastquote-aus-east.azurewebsites.net";
       const payload = {
         product: this.quote.product,
         access_type: this.quote.access_type,

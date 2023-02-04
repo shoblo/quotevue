@@ -8,6 +8,10 @@ import PrimeVue from 'primevue/config';
 import Button from 'primevue/button';
 import Dropdown from 'primevue/dropdown';
 import Checkbox from 'primevue/checkbox';
+import InputSwitch from 'primevue/inputswitch';
+import Listbox from 'primevue/listbox';
+
+
 
 
 // import css and themes
@@ -19,20 +23,17 @@ import 'primeicons/primeicons.css';
 
 const app = createApp(App);
 
-app.use(store)
-app.use(router)
+app.use(store);
+app.use(router);
 app.use(PrimeVue);
 
 app.component('Button', Button);
-app.component('Dropdown',Dropdown);
-app.component('Checkbox',Checkbox);
+app.component('Dropdown', Dropdown);
+app.component('Checkbox', Checkbox);
+app.component('InputSwitch', InputSwitch);
+app.component('Listbox', Listbox);
 
 app.mount('#app')
 
-// createApp(App)
-//   .use(store)
-//   .use(router)
-//   .use(PrimeVue)
-//   .component(Button,'Button')
-//   .mount("#app");
+
 
